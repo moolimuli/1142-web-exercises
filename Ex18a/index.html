@@ -1,68 +1,91 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<style>
-    /* 設定外部容器與共用的文字字型 */
-    .container {
-        padding: 40px;
-        font-family: "Times New Roman", Times, serif;
-        background-color: white;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
-        max-width: 600px;
-    }
+    <meta charset="UTF-8">
+    <title>作業</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif; /* 襯線體符合圖片外觀 */
+            padding: 50px;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
 
-    /* Heading 1：頂部黑色粗線與粉紅色陰影 */
-    .heading-1 {
-        font-size: 42px;
-        font-weight: bold;
-        margin-top: 0;
-        margin-bottom: 40px;
-        display: inline-block; 
-        
-        /* 頂部粗線 */
-        border-top: 5px solid black; 
-        padding-top: 5px;
-        
-        /* 使用 drop-shadow 讓文字與頂部線條同時擁有粉色陰影 */
-        filter: drop-shadow(3px 3px 0px #ffcccc); 
-    }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border: 1px solid #ccc;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* 增加間距 */
+        }
 
-    /* Heading 2：黃色外框與右下角深色陰影 */
-    .heading-2 {
-        font-size: 32px;
-        font-style: italic; 
-        margin-bottom: 60px;
-        padding: 5px 10px;
-        border: 1px solid black; 
-        
-        /* 第一層模擬黃色外框，第二層繪製深色陰影 */
-        box-shadow: 
-            0px 0px 0px 4px #dede00,         
-            5px 5px 4px 0px rgba(0, 0, 0, 0.3); 
-    }
+        /* 標題 1：偽元素製作線條，並同步文字陰影 */
+        .h1-both-shadow {
+            font-size: 42px;
+            margin: 0;
+            display: inline-block;
+            padding-top: 20px; /* 留出空間給上方的線 */
+            position: relative;
+            /* 文字陰影 */
+            text-shadow: 3px 3px 0px lightpink; 
+        }
 
-    /* Heading 3：靠右對齊與單實線底線 */
-    .heading-3 {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 0;
-        text-align: right; 
-        
-        /* 單實線底線 */
-        text-decoration: underline solid black; 
-    }
-</style>
+        .h1-both-shadow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* 線條長度與文字一致 */
+            height: 5px; /* 線條厚度 */
+            background-color: black;
+            /* 線條陰影 */
+            box-shadow: 3px 3px 0px lightpink; 
+        }
+
+        /* 標題 2：多重陰影解決 Outline 遮擋問題 */
+        h2 {
+            font-style: italic;
+            font-size: 32px;
+            padding: 10px;
+            margin: 0;
+            border: 1px solid black; /* 內層細黑邊 */
+            /* 利用多重陰影：第一層實心黃色(4px)，第二層模糊灰色(6px) */
+            box-shadow: 
+                0 0 0 4px #dede00, 
+                5px 5px 6px rgba(0,0,0,0.3);
+        }
+
+        /* 標題 3：靠右對齊容器 */
+        .h3-container {
+            text-align: right;
+        }
+
+        h3 {
+            font-size: 28px;
+            margin: 0;
+            display: inline-block;
+            text-decoration: underline; /* 穩定的單底線 */
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1 class="heading-1">This is heading 1</h1>
-    <h2 class="heading-2">This is heading 2</h2>
-    <h3 class="heading-3">This is heading 3</h3>
-</div>
+    <div class="container">
+        <div>
+            <h1 class="h1-both-shadow">This is heading 1</h1>
+        </div>
+
+        <h2>This is heading 2</h2>
+
+        <div class="h3-container">
+            <h3>This is heading 3</h3>
+        </div>
+    </div>
 
 </body>
 </html>

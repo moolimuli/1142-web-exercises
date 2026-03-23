@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>document</title>
+<style>
+    /* 設定外部容器與共用的文字字型 */
+    .container {
+        padding: 10px 10px;
+        font-family: "Times New Roman", Times, serif;
+        background-color: white;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* 模擬圖片中的卡片陰影 */
+        max-width: 600px;
+    }
+
+    .heading-1 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 40px;
+    display: inline-block; 
+    text-decoration: overline #000000;
+    padding-top: 5px;
+
+    /* 將原本的 text-shadow 刪除，改成下面這行 */
+    text-shadow: 3px 3px 0px lightpink; /* 模擬圖片中的黃色陰影效果 */
+    }
+
+    /* Heading 2：斜體、黑色邊框與黃色外框線 (outline) */
+    .heading-2 {
+        font-size: 32px;
+        font-style: italic; /* 斜體 */
+        margin-bottom: 40px;
+        border: 1px solid black; /* 內層黑色細邊框 */
+        outline: 4px solid #dede00; /* 外層黃色粗外框線 */
+    }
+
+    .heading-3 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 0;
+        text-align: right; /* 文字靠右 */
+        text-decoration: underline black; 
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="heading-1">This is heading 1</h1>
+    <h2 class="heading-2">This is heading 2</h2>
+    <h3 class="heading-3">This is heading 3</h3>
+</div>
+
+</body>
+</html>

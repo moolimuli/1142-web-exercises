@@ -3,41 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>document</title>
+<title>Document</title>
 <style>
     /* 設定外部容器與共用的文字字型 */
     .container {
         padding: 40px;
         font-family: "Times New Roman", Times, serif;
         background-color: white;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* 模擬圖片中的卡片陰影 */
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
         max-width: 600px;
-        gap: 30px; /* 區塊之間的間距 */
+        margin: 20px auto;
     }
 
+    /* Heading 1：頂部黑色粗線與粉紅色陰影 */
     .heading-1 {
         font-size: 42px;
         font-weight: bold;
         margin-top: 0;
         margin-bottom: 40px;
         display: inline-block; 
-        text-decoration: overline solid #000000;
+        
+        /* 頂部粗線 */
+        border-top: 5px solid black; 
         padding-top: 5px;
-        text-shadow: 3px 3px 0px lightpink;
-    }
-    .heading-2 {
-        font-size: 32px;
-        font-style: italic; /* 斜體 */
-        margin-bottom: 40px;
-        border: 1px solid black; /* 內層黑色細邊框 */
-        outline: 4px solid #dede00; /* 外層黃色粗外框線 */
+        
+        /* 使用 drop-shadow 讓文字與頂部線條同時擁有粉色陰影 */
+        filter: drop-shadow(3px 3px 0px #ffcccc); 
     }
 
+    /* Heading 2：黃色外框與右下角深色陰影 */
+    .heading-2 {
+        font-size: 32px;
+        font-style: italic; 
+        margin-bottom: 60px;
+        padding: 5px 10px;
+        border: 1px solid black; 
+        
+        /* 第一層模擬黃色外框，第二層繪製深色陰影 */
+        box-shadow: 
+            0px 0px 0px 4px #dede00,         
+            5px 5px 4px 0px rgba(0, 0, 0, 0.3); 
+    }
+
+    /* Heading 3：靠右對齊與單實線底線 */
     .heading-3 {
         font-size: 28px;
         font-weight: bold;
         margin-bottom: 0;
-        text-align: right; /* 文字靠右 */
+        text-align: right; 
+        
+        /* 單實線底線 */
         text-decoration: underline solid black; 
     }
 </style>

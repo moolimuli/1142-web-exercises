@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello World 樣式作業</title>
+<style>
+    /* 設定外部容器與共用的文字樣式 */
+    .container {
+        padding: 30px;
+        font-family: "Times New Roman", Times, serif;
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* 區塊之間的間距 */
+        width: 450px; /* 控制整體寬度以符合圖片比例 */
+    }
+
+    .box {
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    /* 區塊 1：淺藍背景、橘紅雙線邊框 */
+    .box-1 {
+        background-color: #add8e6; 
+        border: 10px double #eb5e46; 
+    }
+
+    /* 區塊 2：黃色背景、藍色圓角實線邊框 */
+    .box-2 {
+        background-color: #ffff33; 
+        border: 3px solid #3b71e8; 
+        border-radius: 8px; /* 設定圓角 */
+    }
+
+    /* 區塊 3：綠色背景、灰色大圓點虛線邊框 */
+    .box-3 {
+        background-color: #61ad6f; 
+        border: 10px dotted #8c8c8c; 
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box box-1">Hello World</div>
+    <div class="box box-2">Hello World</div>
+    <div class="box box-3">Hello World</div>
+</div>
+
+</body>
+</html>

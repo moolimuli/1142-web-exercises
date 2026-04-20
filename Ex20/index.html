@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>修正後的網頁佈局</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 右上角固定綠色方框 */
+        .fixed-box {
+            position: fixed;
+            top: 20px; /* 與 body padding 對齊 */
+            right: 20px;
+            border: 5px solid #6b8e23; /* 較粗的綠色框 */
+            padding: 15px;
+            background-color: white;
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        /* 表格樣式 */
+        table {
+            border-collapse: collapse;
+            width: 250px;
+            margin-top: 0; /* 移除頂部間距確保對齊感 */
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 20px;
+        }
+
+        /* 標題灰底白字 */
+        th {
+            background-color: #808080;
+            color: white;
+        }
+
+        /* 顏色交換：第一行為白色，第二行為黃色 */
+        /* 因為 nth-child 包含 <thead> 的 <tr>，所以邏輯如下： */
+        
+        /* 標題列後的第 1 列 (奇數) 為白色 */
+        tbody tr:nth-child(odd) {
+            background-color: yellow;
+        }
+
+        /* 標題列後的第 2 列 (偶數) 為黃色 */
+        tbody tr:nth-child(even) {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fixed-box">
+        This div element<br>has position: fixed;
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

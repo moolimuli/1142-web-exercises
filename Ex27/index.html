@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD 佈局練習</title>
+    <style>
+        /* 基本重設，確保寬度計算包含邊框 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 背景與整體容器設定 */
+        body {
+            background-color: #6fb1fc; /* 圖片背景藍色 */
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 白色主區塊 */
+        .main-container {
+            background-color: white;
+            width: 100%;
+            max-width: 800px;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* 區塊之間的垂直間距 */
+        }
+
+        /* 頂部綠色區塊 */
+        .header {
+            background-color: #badc58;
+            height: 150px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        /* 中間藍綠色區塊容器 */
+        .mid-section {
+            display: flex;
+            flex-wrap: wrap; /* 關鍵：允許區塊自動換行 */
+            gap: 10px;
+        }
+
+        .mid-box {
+            background-color: #5fbfc9;
+            height: 100px;
+            border-radius: 5px;
+            /* 預設：大於 480px 時為三欄併排 (圖 b) */
+            flex: 0 0 calc((100% - 20px) / 3); 
+        }
+
+        /* 底部灰色小區塊容器 */
+        .footer-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-box {
+            background-color: #f0f3f4;
+            height: 50px;
+            border-radius: 5px;
+            /* 預設：大於 480px 時為四欄併排 (圖 b) */
+            flex: 0 0 calc((100% - 30px) / 4);
+        }
+
+        /* --- 媒體查詢 Media Query (圖 a：小於 480px) --- */
+        @media (max-width: 480px) {
+            .mid-box {
+                /* 中間區塊變為單欄堆疊 */
+                flex: 0 0 100%;
+            }
+
+            .footer-box {
+                /* 底部區塊變為兩欄併排 */
+                flex: 0 0 calc((100% - 10px) / 2);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="header"></div>
+
+        <div class="mid-section">
+            <div class="mid-box"></div>
+            <div class="mid-box"></div>
+            <div class="mid-box"></div>
+        </div>
+
+        <div class="footer-section">
+            <div class="footer-box"></div>
+            <div class="footer-box"></div>
+            <div class="footer-box"></div>
+            <div class="footer-box"></div>
+        </div>
+    </div>
+
+</body>
+</html>

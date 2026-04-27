@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Image Styling Practice</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* 共通設定：寬度 33% */
+        .img-container {
+            width: 33%;
+            height: 300px; /* 設定固定高度以觀察失真效果 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 左圖：圓角 18px，無失真 */
+        .img-left {
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            object-fit: cover; /* 關鍵：確保圖片填滿但不變形 */
+        }
+
+        /* 中圖：圓形 (150x150)，無失真，有邊框 */
+        .img-center {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 圓形 */
+            border: 2px solid #333; /* 加上邊框 */
+            object-fit: cover; /* 關鍵：圓形內圖片不變形 */
+        }
+
+        /* 右圖：寬度 33%，高度 300px，失真 */
+        .img-right {
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* 關鍵：強制填滿，會導致圖片拉伸失真 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="img-container">
+        <img src="https://picsum.photos/id/1011/600/800" alt="Eiffel Tower" class="img-left">
+    </div>
+
+    <div class="img-container">
+        <img src="https://picsum.photos/id/1015/400/400" alt="Landscape" class="img-center">
+    </div>
+
+    <div class="img-container">
+        <img src="https://picsum.photos/id/1011/600/800" alt="Eiffel Tower" class="img-right">
+    </div>
+
+</body>
+</html>

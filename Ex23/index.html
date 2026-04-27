@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圖片預覽 - CSS 練習</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px;
+      background: #e8e8e8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    /* ── 外框卡片 ── */
+    .card {
+      background: #fff;
+      border: 1px solid #c8c8c8;
+      width: 496px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+
+    /* ── 按鈕列（最上方） ── */
+    .btn-row {
+    padding: 8px 26px 6px 20px;
+    display: flex;
+    justify-content: space-between;  /* 改這行，原本沒有 */
+    align-items: center;   
+    background-color: #d3d0d0;
+    }
+
+    .preview-title {
+    color: #2f2f2f;
+    font-size: 13px;
+    }
+
+    /*
+      設計規格：h22 / R8
+      background #ffffff, outline 1px #2f2f2f
+      Roboto Regular 13px, Color #2f2f2f
+    */
+    .btn-info {
+      height: 22px;
+      padding: 0 15px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #2f2f2f;
+      color: #2f2f2f;
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      line-height: 1;
+    }
+    .btn-info:hover  { background: #2f2f2f; color: #fff; }
+    .btn-info:active { opacity: .8; }
+
+    /* ══════════════════════════════════════════
+       捲動容器：收起時只顯示圖片高度 (240px)
+       展開後變高，整個容器（圖片 + 資訊）一起捲
+       ══════════════════════════════════════════ */
+    .scroll-container {
+      margin: 20px 26px 20px 20px;
+      height: 240px;          /* 收起 → 只露出圖片 */
+      overflow: hidden;
+      transition: height .35s ease;
+      position: relative;
+    }
+
+    .scroll-container.open {
+      height: 250px;          
+      overflow-y: auto;
+    }
+
+    /* Scrollbar 樣式 (WebKit) */
+    .scroll-container::-webkit-scrollbar        { width: 6px; }
+    .scroll-container::-webkit-scrollbar-track  { background: #f3f3f3; }
+    .scroll-container::-webkit-scrollbar-thumb  { background: #bbb; border-radius: 3px; }
+    .scroll-container::-webkit-scrollbar-thumb:hover { background: #888; }
+
+    /* ── 圖片 ── */
+    .preview-image {
+      width: 100%;
+      height: 240px;
+      display: block;
+      object-fit: cover;
+      position: relative;
+    }
+
+
+
+    /* ── 展開後的資訊列 ── */
+    .detail-info {
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 12px;
+      border-bottom: 1px solid #efefef;
+      gap: 12px;
+    }
+    .detail-row:last-child { border-bottom: none; }
+
+    /* 欄位標籤 */
+    .detail-label {
+      color: #2f2f2f;
+      font-size: 13px;
+      min-width: 40px;
+      flex-shrink: 0;
+    }
+
+    /* 預覽內文字：Roboto Regular 13px, Color #707070 */
+    .detail-value {
+      color: #707070;
+      font-size: 13px;
+      word-break: break-all;   /* 路徑可能很長 */
+    }
+
+    /* 動態數字：Color #0084ff */
+    .detail-value.number {
+      color: #0084ff;
+      font-weight: 500;
+    }
+
+
+    .counter-text { color: #2f2f2f; font-size: 13px; }
+    .counter-text .num { color: #0084ff; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- 查看資訊按鈕 -->
+  <div class="btn-row">
+    <span class="preview-title">預覽</span>
+    <button class="btn-info" id="toggleBtn" onclick="toggleInfo()">查看資訊</button>
+</div>
+
+  <!-- 捲動容器：圖片 + 資訊合為一個 scroll -->
+  <div class="scroll-container" id="scrollContainer">
+
+ 
+
+    <!-- 真實圖片（使用 picsum 橋樑風景） -->
+    <img
+      class="preview-image"
+      src="https://picsum.photos/seed/bridge/450/240"
+      alt="20171012_1.jpg 預覽"
+    />
+
+    <!-- 展開後的資訊（只有 日期、類別、大小、路徑） -->
+    <div class="detail-info">
+      <div class="detail-row">
+        <span class="detail-label">日期</span>
+        <span class="detail-value">2017/10/12</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">類別</span>
+        <span class="detail-value">JPG</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">大小</span>
+        <span class="detail-value number">466.97KB</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">路徑</span>
+        <span class="detail-value">\DesignCenter\PM - RD 溝通人\WEB\Situations\A_image2PDF\w2\sample</span>
+      </div>
+    </div>
+
+  </div><!-- end scroll-container -->
+
+
+</div>
+
+<script>
+  let isOpen = false;
+
+  function toggleInfo() {
+  const container = document.getElementById('scrollContainer');
+  const btn = document.getElementById('toggleBtn');
+
+  isOpen = !isOpen;
+  container.classList.toggle('open', isOpen);
+  btn.textContent = isOpen ? '收起資訊' : '查看資訊';
+
+  // 收起時，重設捲動位置回頂部
+  if (!isOpen) {
+    container.scrollTop = 0;
+  }
+}
+</script>
+
+</body>
+</html>

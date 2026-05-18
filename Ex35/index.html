@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 物件操作練習</title>
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+        }
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: "Courier New", Courier, monospace;
+            overflow-x: auto;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style> -->
+</head>
+<body>
+
+<div class="container">
+    <h1>JavaScript 物件操作結果</h1>
+    
+    <h2>1. 原始物件的所有屬性 (Properties)</h2>
+    <p>使用 <code class="highlight">Object.keys()</code> 取得的屬性列表：</p>
+    <pre id="properties-list"></pre>
+
+    <h2>2. 刪除 age 屬性並印出新物件</h2>
+    <p>使用 <code class="highlight">delete Person.age</code> 後的物件內容：</p>
+    <pre id="object-result"></pre>
+</div>
+
+<script>
+    // 1. 定義題目提供的 Sample object
+    var Person = {
+        firstName : "Tony",
+        lastName  : "Lee",
+        age       : 50,
+        eyeColor  : "Blue"
+    };
+
+    // 2. 列出該物件的所有屬性
+    // Object.keys() 會回傳一個包含所有 key 的陣列
+    var allProperties = Object.keys(Person);
+    
+    // 將屬性列表顯示在網頁上 (用逗號隔開)
+    document.getElementById("properties-list").textContent = allProperties.join(", ");
+
+    // 3. 刪除 age 屬性
+    delete Person.age;
+
+    // 4. 印出刪除後的物件
+    // JSON.stringify(Person, null, 2) 可以把物件轉成美化排版後的 JSON 字串
+    document.getElementById("object-result").textContent = JSON.stringify(Person, null, 2);
+</script>
+
+</body>
+</html>
